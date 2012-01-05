@@ -8,16 +8,16 @@ from string import ascii_lowercase as chars
 inf = float('inf')
 
 def a_star(G, s, t, h):
-  P, Q = {}, [(h(s), None, s)]
-  while Q:
-    d, p, u = heappop(Q)
-    if u in P: continue
-    P[u] = p
-    if u == t: return d - h(t), P
-    for v in G[u]:
-      w = G[u][v] - h(u) + h(v)
-      heappush(Q, (d + w, u, v))
-  return inf, None
+  P, Q = {}, [(h(s), None, s)]      # Preds and queue with heuristic
+  while Q:                          # Still unprocessed nodes?
+    d, p, u = heappop(Q)            # Node with lowest heuristic
+    if u in P: continue             # Already visited? Skip it
+    P[u] = p                        # Set path predecessor
+    if u == t: return d - h(t), P   # Arrived! Return dist and preds
+    for v in G[u]:                  # Go through all neighbors
+      w = G[u][v] - h(u) + h(v)     # Modify weight with heuristic
+      heappush(Q, (d + w, u, v))    # Add to queue, with heur as priority
+  return inf, None                  # Didn't get to t
 
 class WordSpace(object):
 
