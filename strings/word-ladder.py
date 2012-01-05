@@ -22,51 +22,54 @@ def a_star(G, s, t, h):
 class WordSpace(object):
 
   # An implicit graph w/utils
-  def __init__(self, words): # Create graph over the words
+  def __init__(self, words):        # Create graph over the words
     self.words = words
-    self.M = dict()
+    self.M = dict()                 # Reachable words
 
-  def variants(self, wd, words): #
-    wasl = list(wd) #
-    for i, c in enumerate(wasl): #
-      for oc in chars: #
-        if c == oc: continue #
-        wasl[i] = oc #
-        ow = ''.join(wasl) #
-        if ow in words: #
-          yield ow #
-      wasl[i] = c #
+  def variants(self, wd, words):    # Yield all word variants
+    wasl = list(wd)                 # Convert word to a list
+    for i, c in enumerate(wasl):    # Each position and character
+      for oc in chars:              # Every possible character
+        if c == oc: continue        # Skip the same character
+        wasl[i] = oc                # Replace the character
+        ow = ''.join(wasl)          # Make a string of the word
+        if ow in words:             # Is it a valid word?
+          yield ow                  # Yield it
+      wasl[i] = c                   # Reset the character
+
 
   def __getitem__(self, wd):
     # The adjacency map interface
     if wd not in self.M:
-    # Cache the neighbors
+    # Cache the direct neighbors
       self.M[wd] = dict.fromkeys(self.variants(wd, self.words), 1)
     return self.M[wd]
 
-  def heuristic(self, u, v): # The default heuristic
-    return sum(a!=b for a, b in zip(u, v)) # How many characters differ?
 
-  def ladder(self, s, t, h=None): # Utility wrapper for a_star
-    if h is None: # Allows other heuristics
-      def h(v): 
-        return self.heuristic(v, t) 
+  def heuristic(self, u, v):                  # The default heuristic
+    return sum(a!=b for a, b in zip(u, v))    # How many characters differ?
 
-    _, P = a_star(self, s, t, h) 
-    if P is None: 
-      return [s, None, t] 
 
-    u, p = t, [] 
-    while u is not None: 
-      p.append(u) 
-      u = P[u] 
+  def ladder(self, s, t, h=None):   # Utility wrapper for a_star
+    if h is None:                   # Allows other heuristics
+      def h(v):
+        return self.heuristic(v, t)
 
-    p.reverse() 
-    return p 
+    _, P = a_star(self, s, t, h)    # Get the predecessor map
+    if P is None:
+      return [s, None, t]           # When no path exists
+
+    u, p = t, []
+    while u is not None:            # Walk backward from t
+      p.append(u)                   # Append every predecessor
+      u = P[u]                      # Take another step
+
+    p.reverse()                     # The path is backward
+    return p
 
 
 if __name__ == '__main__':
   wds = set(line.strip().lower() for line in open("/usr/share/dict/words"))
   G = WordSpace(wds)
   print G.ladder('lead', 'gold')
-  print G.ladder('cold', 'wats')
+  print G.ladder('teamwork', 'vacation')
