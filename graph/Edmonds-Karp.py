@@ -43,7 +43,7 @@ def BreadthFirstSearch(capacity, neighbors, flows, start, end):
   while queue:
     u = queue.pop(0)
     for v in neighbors[u]:
-      # if there is available capacity and vis is not seen before in search
+      # if there is available capacity and v is is not seen before in search
       if capacity[u][v] - flows[u][v] > 0 and parents[v] == -1:
         parents[v] = u
         # it will work because at the beginning M[u] is Infinity

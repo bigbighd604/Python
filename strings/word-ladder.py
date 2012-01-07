@@ -73,3 +73,7 @@ if __name__ == '__main__':
   G = WordSpace(wds)
   print G.ladder('lead', 'gold')
   print G.ladder('teamwork', 'vacation')
+  print G.ladder('axe', 'pie')
+  print G.ladder('axe', 'pie', h = lambda v: 0)
+  print G.ladder('camera', 'harder')
+  print G.ladder('camera', 'harder', h = lambda v: 0)
