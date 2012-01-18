@@ -16,6 +16,9 @@ def cross(A, B):
     "Cross product of elements in A and elements in B."
     return [a+b for a in A for b in B]
 
+# digits can use set to improve efficiency. More than one place need to change.
+#digits  = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
 digits   = '123456789'
 rows     = 'ABCDEFGHI'
 cols     = digits
