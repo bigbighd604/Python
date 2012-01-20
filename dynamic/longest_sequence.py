@@ -9,8 +9,19 @@
 #
 
 
+import bisect
 import random
 import sys
+
+
+# This function returns the length of longest increasing sequence.
+def lis(seq):
+  end = []
+  for v in seq:
+    idx = bisect.bisect(end, v)
+    if idx == len(end): end.append(val)
+    else: end[idx] = v
+  return len(end)
 
 
 def GenerateList(size):
@@ -28,6 +39,8 @@ def LongestSequence(numbers):
     for j in xrange(i):
       if numbers[j] < numbers[i] and len(result[j]) > i_length:
         temp_list = result[j]
+        # update i_length only got longer sequences
+        i_length = len(result[j])
 
     result[i].extend(temp_list)
     result[i].append(numbers[i])
@@ -49,5 +62,9 @@ if __name__ == "__main__":
   l = GenerateList(size)
   print l
   results = LongestSequence(l)
+  for line in results:
+    print line
+  n3=[180, 359, 226, 434, 251, 116, 33, 97, 366, 169, 289, 193, 120, 215, 281, 452, 247, 6, 230, 107]
+  results = LongestSequence(n3)
   for line in results:
     print line
