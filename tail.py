@@ -40,6 +40,7 @@ def Tail(file, num_lines = 10):
       else:
         break
 
+"""Comments in master"""
 
 def Tail2(file, num_lines= 10):
   with open(file) as f:
