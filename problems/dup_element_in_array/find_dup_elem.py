@@ -19,6 +19,11 @@ def GenArray(length):
   random.shuffle(array)
   return array
 
+# By exploiting the following fact:
+# a ^ a = 0
+# 0 ^ a = a
+# This XorFind use one extra storage space.
+# In place modification of array uses no extra space.
 def XorFind(array):
   print 'Start Xor find ...'
   found = 0
@@ -29,6 +34,7 @@ def XorFind(array):
   #  found = found ^ array[i-1] ^ (i - 1)
   print 'Dup num founded (Xor): %s' % found
 
+# May overflow when dealing with huge array.
 def SumFind(array):
   print 'Start Sum find ...'
   length = len(array)
