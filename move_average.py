@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
+# importing modules
 import collections
 import itertools
 
-
+# defining function
 def GetMoveAverage2(l, n):
   it = iter(l)
   d = collections.deque(itertools.islice(it, n-1))
