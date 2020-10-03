@@ -170,3 +170,34 @@ def HeapSort(data):
 
 def HeapSortWrapper(data):
   return list(HeapSort(data))
+
+
+lst=[int(x) for x in input().split()]
+
+op=HeapSortWrapper(lst)
+print("HeapSortWrapper")
+print(op)
+
+op=HeapSort(lst)
+print("HeapSort")
+print(op)
+
+op=CountingSort(lst)
+print("CountingSort")
+print(op)
+
+op=MergeSort(lst)
+print("MergeSort")
+print(op)
+
+op=QuickSort(lst)
+print("QuickSort")
+print(op)
+
+op=InsertionSort(lst)
+print("InsertionSort")
+print(op)
+
+op=SelectionSort(lst)
+print("SelectionSort")
+print(op)
