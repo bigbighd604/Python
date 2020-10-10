@@ -39,9 +39,8 @@ def Tail(file, num_lines = 10):
         sys.stdout.write(data)
       else:
         break
-
-"""Comments in master"""
-"""This is comments in experimental."""
+# These are comments
+# This can be done with Ctrl + BackSlash[/]
 
 def Tail2(file, num_lines= 10):
   with open(file) as f:
@@ -50,4 +49,4 @@ def Tail2(file, num_lines= 10):
     sys.stdout.write(item)
 
 if __name__ == '__main__':
-  Tail2(sys.argv[1])
+  Tail2(sys.argv[0])

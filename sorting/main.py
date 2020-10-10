@@ -16,7 +16,7 @@ def main():
                     'QuickSort', 'MergeSort', 'CountingSortWrapper',
                     'RadixSort', 'HeapSortWrapper')
   #algorithm_list = ('QuickSort', 'MergeSort', 'CountingSortWrapper', 'HeapSortWrapper')
-  number_list, time_list = common.TimeAlgorithm(algorithm_list,
+  number_list, time_list = common.timeAlgorithm(algorithm_list,
                                                 max_size = 500000,
                                                 step = 1000,
                                                 enable_threshold = True)
