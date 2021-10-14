@@ -2,6 +2,7 @@
 
 
 def GetEquilibriumIndex(l):
+  
   s = sum(l)
   ls = 0
   try:
