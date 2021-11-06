@@ -2,15 +2,18 @@
 
 
 def GetEquilibriumIndex(l):
+  
   s = sum(l)
   ls = 0
-  results = []
-  for i in xrange(len(l)):
-    s -= l[i]
-    if ls == s:
-      results.append(i)
-    ls += l[i]
-
+  try:
+    results = []
+    for i in xrange(len(l)):
+      s -= l[i]
+      if ls == s:
+        results.append(i)
+      ls += l[i]
+  except:
+    pass
   return results
 
 if __name__ == '__main__':
